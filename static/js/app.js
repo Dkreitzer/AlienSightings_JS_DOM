@@ -7,16 +7,20 @@ var tbody = d3.select("tbody");
 var thead = d3.select("thead");
 
 //  Button & Field Variables
-var dateField = d3.select('#datetime');
+var dateField = d3.select('#datetime').node().value;
+var cityField = d3.select('#city').node().value;
+var stateField = d3.select('#state').node().value;
+var shapeField = d3.select('#shape').node().value;
 var FilterBtn = d3.select('#filter-btn');
 
 // Filter Function
-function SameDate(entry) {
-    entry.datetime === dateFieldVal};
+function SameDate(data) {
+    data.datetime === dateFieldVal};
 
 // What happens when the button is clicked
 function handleClick(){
-    output.tbody("");
+    // output.tbody("");
+    document.getElementById("tbody").innerHTML = ""
     var dateFieldVal = d3.select('#datetime').node().value;
     
     // Filter the raw data with the date entered in the form(dateField)
