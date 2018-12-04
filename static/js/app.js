@@ -1,42 +1,70 @@
 // from data.js
-var tableData = data;
+var ufoReports = data;
 
-//  HTML Table Variables
+
+// rendering table
 var table = d3.select('#ufo-table');
-var tbody = d3.select("tbody");
-var thead = d3.select("thead");
+var thead = d3.select('thead')
+var tbody = d3.select('tbody');
 
-//  Button & Field Variables
-var dateField = d3.select('#datetime').node().value;
-var cityField = d3.select('#city').node().value;
-var stateField = d3.select('#state').node().value;
-var shapeField = d3.select('#shape').node().value;
-var FilterBtn = d3.select('#filter-btn');
+function createTable() {
+  
+  var headers = ['Date', 'City', 'State', 'Country', 'Shape', 'Duration', 'Comments']
+  var row = thead.append("tr")
 
-// Filter Function
-function SameDate(data) {
-    data.datetime === dateFieldVal};
+  headers.forEach((value) => {
+  var cell = row.append("td");
+  cell.text(value); })
 
-// What happens when the button is clicked
-function handleClick(){
-    // output.tbody("");
-    document.getElementById("tbody").innerHTML = ""
-    var dateFieldVal = d3.select('#datetime').node().value;
-    
-    // Filter the raw data with the date entered in the form(dateField)
-    var FilteredData = tableData.filter(SameDate);
-    console.log(FilteredData);
 
-// Populate Table
-
-    FilteredData.forEach(function(sighting) {
-        var row = tbody.append("tr");
-        Object.entries(sighting).forEach(function([key, value]) {
-            var cell = tbody.append("td");
-            cell.text(value);
-        });
+  ufoReports.forEach((ufoReport) => {
+      var row = tbody.append("tr")
+      Object.entries(ufoReport).forEach(([key, value]) => {
+        var cell = tbody.append("td");
+        cell.text(value);
+      });
     });
-};
 
-// When filter button is clicked
-FilterBtn.on("click", handleClick)
+};
+createTable();
+
+var filterButton = d3.select('#filter-btn');
+var inputElement = d3.select("#filter");
+
+
+// filter function
+filterButton.on("click", function() {
+
+  d3.event.preventDefault();
+  // clearing exisiting table
+  document.getElementById("tbody").innerHTML = "";
+
+  //colecting filters  
+  var datetimeVal = d3.select('#datetime').node().value;
+  var cityVal = d3.select('#city').node().value;
+  var stateVal = d3.select('#state').node().value;
+  var shapeVal = d3.select('#shape').node().value;
+
+  var filters = {'datetime': datetimeVal, 'city': cityVal, 'state': stateVal, 'shape': shapeVal};
+
+  var filteredData = ufoReports;
+
+  Object.entries(filters).forEach(([key, value]) => {
+    if (value != ""){
+    
+      filteredData = filteredData.filter(ufoReport => ufoReport[key]  === value );
+
+    }
+  });
+
+
+  //creating filter table
+  filteredData.forEach((ufoReport) => {
+    var row = tbody.append("tr")
+    Object.entries(ufoReport).forEach(([key, value]) => {
+      var cell = tbody.append("td");
+      cell.text(value);
+    });
+  })
+
+});

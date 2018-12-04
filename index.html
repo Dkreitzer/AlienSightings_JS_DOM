@@ -37,20 +37,22 @@
                     <ul class="list-group" id="filters">
                       <li class="filter list-group-item">
                         <label for="date">Enter a Date</label>
-                        <input class="form-control" id="datetime" type="text" placeholder="1/11/2011">
-                        
-                        <label for="city">Enter a Date</label>
-                        <input class="form-control" id="city" type="text" placeholder="US City">
-                        
-                        <label for="State">Enter a Date</label>
-                        <input class="form-control" id="state" type="text" placeholder="State i.e. CA">
-                        
-                        <label for="Shape">Enter a Date</label>
-                        <input class="form-control" id="shape" type="text" placeholder="What Shape">
+                        <input class="form-control" id="datetime" type="text" placeholder="1/1/2010">
+                          
+                        <label for="city">Enter a City</label>
+                        <input class="form-control" id="city" type="text" placeholder="benton">
+                          
+                        <label for="State">Enter a State</label>
+                        <input class="form-control" id="state" type="text" placeholder="az">
+        
+                        <label for="Shape">Enter a Shape</label>
+                        <input class="form-control" id="shape" type="text" placeholder="circle">
+                          
+
                       </li>
                     </ul>
                   </div>
-                  <button id="filter-btn" type="submit" class="btn btn-default">Filter Table</button>
+                  <button id="filter-btn" type="button" class="btn btn-default">Filter Table</button>
                 </form>
               </div>
             </div>
@@ -58,19 +60,9 @@
         </div>
         <div class="col-md-10">
           <div id="table-area" class="">
-            <table id="ufo-table" class="table table-striped">
-              <thead>
-                <tr>
-                  <th class="table-head">Date</th>
-                  <th class="table-head">City</th>
-                  <th class="table-head">State</th>
-                  <th class="table-head">Country</th>
-                  <th class="table-head">Shape</th>
-                  <th class="table-head">Duration</th>
-                  <th class="table-head">Comments</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
+            <table id="ufo-table" class="table">
+            <thead id="thead"></thead>
+            <tbody id="tbody"></tbody>
             </table>
           </div>
         </div>
